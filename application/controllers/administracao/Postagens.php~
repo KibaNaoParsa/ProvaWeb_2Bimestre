@@ -1,0 +1,17 @@
+<?php defined('BASEPATH') or exit('No direct script acess allowed');
+	class Postagens extendes CI_Controller{
+		public function index(){
+			$this->load->helper('form');
+			$this->load->view('administracao/nova_postagem');
+		}
+		public function adicionar(){
+			$data['titulo'] = $this->input->post('txt_titulo');
+			$data['texto'] = $this->input->post('txt_texto');
+			
+			if($this->db->insert('postagens', $data)){
+				redirect(base_url('administracao/postagens'));
+			}else{
+				echo "Nao foi possivel gravar a postagen";
+			}
+		}
+	}
